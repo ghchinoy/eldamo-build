@@ -43,6 +43,6 @@ docker run --rm -u gradle -p 8080:8080 -v "$PWD":/home/gradle/eldamo -w /home/gr
 
 ```
 
-You should then be able to go to localhost:8080/eldamo or localhost:8080/pub/eldamo to see the site.
+You should then be able to go to localhost:8080/eldamo or localhost:8080/eldamo/pub/ to see the site.
 
 
