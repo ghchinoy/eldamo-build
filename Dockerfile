@@ -1,6 +1,6 @@
 FROM jetty
 
-COPY eldamo/build/libs/eldamo-0.7.3.war $JETTY_HOME
+COPY eldamo/build/libs/eldamo-0.5.0.war /var/lib/jetty/webapps
 
-RUN java -jar "$JETTY_HOME/eldamo-0.7.3.war" --add-to-startd=jmx,stats
+RUN java -jar "$JETTY_HOME/start.jar" --create-startd --add-to-start=jmx,stats
 
