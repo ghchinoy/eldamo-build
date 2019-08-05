@@ -12,9 +12,9 @@ This repository contains instructions that will build Eldamo with the proper ver
 
 ## Use the Gradle Image
 
-There are a variety of gradle tasks (use `gradle tasks` to see them all
+There are a variety of gradle tasks (use `gradle tasks` to see them all).
 
-The instance below shows how to use `jettyRunWar` which is the primary web-serving application
+The instance below shows how to use `jettyRunWar` which is the primary web-serving application.
 
 Other useful tasks are:
 
