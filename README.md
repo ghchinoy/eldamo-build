@@ -28,15 +28,14 @@ Please note the version discrepancy in the url path will be fixed in a future up
 
 ### Build a Docker Image
 
-The supplied Dockerfile will create an Eldamo image from the war generated from the next option, use the following "Run Gradle Directly" with the `gradle war` option.
+The supplied Dockerfile will create an Eldamo image using multistage Docker build, first cloning the Eldamo repository and generating a war, and second (and finally) creating a [jetty](https://hub.docker.com/_/jetty) image
 
 ```
 # build an image eldamo:0.7.3
 docker build . -t eldamo:0.7.3
 
 # run that image (interactively with -it ; detached, substitute -d)
-# exposed on port :8081, named 'eldamo-test'
-docker run -it -p 8081:8080 --name eldamo-test eldamo:0.7.3
+docker run -it -p 8080:8080 --name eldamo-web eldamo:0.7.3
 ```
 
 
