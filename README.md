@@ -1,6 +1,6 @@
 # Building Eldamo
 
-[Eldamo](https://github.com/pfstrack/eldamo) is currently set up to build with Gradle 2.6 (sub 4.0) and 
+[Eldamo](https://github.com/pfstrack/eldamo) is currently set up to build with Gradle 2.6 (specifically, a version before v4.0) and 
 jetty. As of this writing, Gradle is at version 5.5.1 and, as of v 4+, no longer supports a jetty plugin.
 
 This repository contains a Dockerfile as wel as instructions options that will build Eldamo with the proper versions of software necessary.
@@ -19,7 +19,7 @@ There are three ways to use/build Eldamo: via a preconfigured Docker image, buil
 Run Eldamo with a [prebuilt docker image](https://hub.docker.com/r/ghchinoy/eldamo) via:
 
 ```
-docker run -d -p 8080:8080 --name eldamo-web ghchinoy/eldamo:0.7.3
+docker run -d -p 8080:8080 --name eldamo-web ghchinoy/eldamo:0.7.4
 ```
 
 Then open a browser to http://localhost:8080/eldamo-0.5.0 or http://localhost:8080/eldamo-0.5.0/pub/
@@ -31,11 +31,11 @@ Please note the version discrepancy in the url path will be fixed in a future up
 The supplied Dockerfile will create an Eldamo image using multistage Docker build, first cloning the Eldamo repository and generating a war, and second (and finally) creating a [jetty](https://hub.docker.com/_/jetty) image
 
 ```
-# build an image eldamo:0.7.3
-docker build . -t eldamo:0.7.3
+# build an image eldamo:0.7.4
+docker build . -t eldamo:0.7.4
 
 # run that image (interactively with -it ; detached, substitute -d)
-docker run -it -p 8080:8080 --name eldamo-web eldamo:0.7.3
+docker run -it -p 8080:8080 --name eldamo-web eldamo:0.7.4
 ```
 
 
