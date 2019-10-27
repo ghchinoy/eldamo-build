@@ -3,7 +3,7 @@
 [Eldamo](https://github.com/pfstrack/eldamo) is currently set up to build with Gradle 2.6 (specifically, a version before v4.0) and 
 jetty. As of this writing, Gradle is at version 5.5.1 and, as of v 4+, no longer supports a jetty plugin.
 
-This repository contains a Dockerfile as wel as instructions options that will build Eldamo with the proper versions of software necessary.
+This repository contains a Dockerfile as well as instructions options that will build Eldamo with the proper versions of software necessary.
 
 ## Prerequisites
 
