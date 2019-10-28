@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/eldamo-build/eldamo:0.7.4', '.' ]
+images:
+- 'gcr.io/eldamo-build/eldamo:0.7.4'
