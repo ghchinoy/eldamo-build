@@ -14,7 +14,7 @@ This repository contains a Dockerfile as well as instructions options that will 
 
 There are three ways to use/build Eldamo: via a preconfigured Docker image, building your own Docker image, or using a Gradle image directly.
 
-## Preconfigured Docker image
+### Preconfigured Docker image
 
 Run Eldamo with a [prebuilt docker image](https://hub.docker.com/r/ghchinoy/eldamo) via:
 
@@ -22,9 +22,7 @@ Run Eldamo with a [prebuilt docker image](https://hub.docker.com/r/ghchinoy/elda
 docker run -d -p 8080:8080 --name eldamo-web ghchinoy/eldamo:0.7.4
 ```
 
-Then open a browser to http://localhost:8080/eldamo-0.5.0 or http://localhost:8080/eldamo-0.5.0/pub/
-
-Please note the version discrepancy in the url path will be fixed in a future update.
+Then open a browser to http://localhost:8080/eldamo-0.7.4 or http://localhost:8080/eldamo-0.7.4/pub/
 
 ### Build a Docker Image
 
@@ -32,13 +30,20 @@ The supplied Dockerfile will create an Eldamo image using multistage Docker buil
 
 ```
 # build an image eldamo:0.7.4
-docker build . -t eldamo:0.7.4
+ELDAMO_VERSION=0.7.4 # set as a variable for reuse in the image tag and in a Docker build arg
+docker build . -t "eldamo:${ELDAMO_VERSION}"--build-arg=ELDAMO_VERSION=${ELDAMO_VERSION}
 
 # run that image (interactively with -it ; detached, substitute -d)
-docker run -it -p 8080:8080 --name eldamo-web eldamo:0.7.4
+docker run -it -p 8080:8080 --name eldamo-web eldamo:${ELDAMO_VERSION}
 ```
 
+#### Build with Google Cloud Platform's Cloud Build
 
+One can also build an image on the Google Cloud build service, Cloud Build, using the included cloudbuild.yaml and optionally provide an Eldamo version number as a Cloud Build substitution.
+The default version is 0.5.0.
+
+```
+gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.4
 
 ### Run Gradle Directly
 
@@ -74,5 +79,3 @@ docker run --rm -u gradle -p 8080:8080 -v "$PWD":/home/gradle/eldamo -w /home/gr
 ```
 
 You should then be able to go to localhost:8080/eldamo or localhost:8080/eldamo/pub/ to see the site.
-
-
