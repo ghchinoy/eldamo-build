@@ -44,6 +44,7 @@ The default version is 0.5.0.
 
 ```
 gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.4
+```
 
 ### Run Gradle Directly
 
