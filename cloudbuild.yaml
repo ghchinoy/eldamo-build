@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/eldamo-build/eldamo:${_ELDAMO_VERSION}', '--build-arg', 'ELDAMO_VERSION=${_ELDAMO_VERSION}', '.' ]
+  args: [ 'build', '-t', 'gcr.io/eldamo-build/eldamo:${_ELDAMO_VERSION}', '.' ]
 images:
 - 'gcr.io/eldamo-build/eldamo:${_ELDAMO_VERSION}'
 substitutions:
-  _ELDAMO_VERSION: 0.5.0
+  _ELDAMO_VERSION: 0.7.4

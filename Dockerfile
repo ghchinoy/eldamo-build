@@ -5,9 +5,12 @@ FROM gradle:3.5-jdk7 as builder
 RUN git clone https://github.com/pfstrack/eldamo
 RUN cp -R /home/gradle/eldamo/src/data /home/gradle/eldamo/src/main/webapp/
 
-ARG ELDAMO_VERSION=0.5.0
 # substitute the version into the build file
-RUN sed -ie -E "/version/s/ = '(.+)'/ = '${ELDAMO_VERSION}'/" /home/gradle/eldamo/build.gradle
+USER root
+RUN apt-get update && apt-get install libxml2-utils -y
+USER gradle
+RUN VER=$(xmllint --xpath "string(/*/@version)" /home/gradle/eldamo/src/data/eldamo-data.xml) && \
+    sed -ie -E "/version/s/ = '(.+)'/ = '${VER}'/" /home/gradle/eldamo/build.gradle
 
 WORKDIR /home/gradle/eldamo
 RUN gradle war
