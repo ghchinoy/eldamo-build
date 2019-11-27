@@ -46,6 +46,10 @@ The default version is 0.7.4.
 gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.4
 ```
 
+Or, if you have a GCP project, run it immediately with this button:
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=https://github.com/ghchinoy/eldamo-build/)
+
 ### Run Gradle Directly
 
 There are a variety of gradle tasks (use `gradle tasks` to see them all).
