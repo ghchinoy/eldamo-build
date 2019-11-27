@@ -1,0 +1,8 @@
+{
+	"env": {
+		"ELDAMO_VERSION": {
+			"description": "version of Eldamo (if you want to set it manually)",
+			"value": "0.7.4",
+			"required": false
+		}
+}
