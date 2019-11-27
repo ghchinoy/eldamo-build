@@ -48,7 +48,7 @@ gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.
 
 Or, if you have a GCP project, run it immediately with this button:
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?git_repo=https://github.com/ghchinoy/eldamo-build/&revision=cloudrunbutton)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run?revision=cloudrunbutton)
 
 ### Run Gradle Directly
 
