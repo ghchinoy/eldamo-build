@@ -16,21 +16,21 @@ There are three ways to use/build Eldamo: via a preconfigured Docker image, buil
 
 ### Preconfigured Docker image
 
-Run Eldamo with a [prebuilt docker image](https://hub.docker.com/r/ghchinoy/eldamo) via:
+Run Eldamo with a [prebuilt docker image](gcr.io/eldamo-build/eldamo) via:
 
 ```
-docker run -d -p 8080:8080 --name eldamo-web ghchinoy/eldamo:0.7.4
+docker run -d -p 8080:8080 --name eldamo-web gcr.io/eldamo-build/eldamo:0.7.9
 ```
 
-Then open a browser to http://localhost:8080/eldamo-0.7.4 or http://localhost:8080/eldamo-0.7.4/pub/
+Then open a browser to http://localhost:8080/ 
 
 ### Build a Docker Image
 
-The supplied Dockerfile will create an Eldamo image using multistage Docker build, first cloning the Eldamo repository and generating a war, and second (and finally) creating a [jetty](https://hub.docker.com/_/jetty) image
+The supplied Dockerfile will create an Eldamo image using multistage Docker build, first cloning the Eldamo repository and generating a war, and second (and finally) creating a [distroless](https://github.com/GoogleContainerTools/distroless) (think as small as possible) [jetty](https://www.eclipse.org/jetty/) image.
 
 ```
-# build an image eldamo:0.7.4
-ELDAMO_VERSION=0.7.4
+# build an image eldamo:0.7.9
+ELDAMO_VERSION=0.7.9
 docker build -t "eldamo:${ELDAMO_VERSION}"  .
 
 # run that image (interactively with -it ; detached, substitute -d)
@@ -40,10 +40,10 @@ docker run -it -p 8080:8080 --name eldamo-web eldamo:${ELDAMO_VERSION}
 #### Build with Google Cloud Platform's Cloud Build
 
 One can also build an image on the Google Cloud build service, Cloud Build, using the included cloudbuild.yaml and optionally provide an Eldamo version number as a Cloud Build substitution.
-The default version is 0.7.4.
+The default version is 0.7.9.
 
 ```
-gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.4
+gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.9
 ```
 
 ### Run Gradle Directly

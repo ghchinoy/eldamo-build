@@ -17,8 +17,9 @@ RUN gradle war
 
 #
 # Server image: Create jetty + war
-FROM jetty
+FROM gcr.io/distroless/java/jetty
 LABEL maintainer="ghchinoy@gmail.com"
 
-COPY --from=builder /home/gradle/eldamo/build/libs/**.war /var/lib/jetty/webapps
-RUN java -jar "$JETTY_HOME/start.jar" --create-startd --add-to-start=jmx,stats
+COPY --from=builder /home/gradle/eldamo/build/libs/**.war /jetty/webapps/ROOT.war
+#RUN java -jar "$JETTY_HOME/start.jar" --create-startd --add-to-startd=jmx,stats -Djib.container.appRoot=/jetty/webapps/eldamo-0.7.9 
+CMD ["/jetty/start.jar"]
