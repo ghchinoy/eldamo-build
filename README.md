@@ -1,7 +1,11 @@
 # Building Eldamo
 
-[Eldamo](https://github.com/pfstrack/eldamo) is currently set up to build with Gradle 2.6 (specifically, a version before v4.0) and 
-jetty. As of this writing, Gradle is at version 5.5.1 and, as of v 4+, no longer supports a jetty plugin.
+[Eldamo](https://github.com/pfstrack/eldamo) is Paul Strack's generated lexicon of Tolkien's languages.
+
+This repository contains instructions to build a Eldamo into a Java container - a Dockerfile and instructions to do so.
+
+Eldamo is currently set up to build with Gradle 2.6 (specifically, a version before v4.0) and 
+jetty. As of this writing, Gradle is at version 6.9.1 and, as of v 4+, no longer supports a jetty plugin.
 
 This repository contains a Dockerfile as well as instructions options that will build Eldamo with the proper versions of software necessary.
 
@@ -19,7 +23,7 @@ There are three ways to use/build Eldamo: via a preconfigured Docker image, buil
 Run Eldamo with a [prebuilt docker image](gcr.io/eldamo-build/eldamo) via:
 
 ```
-docker run -d -p 8080:8080 --name eldamo-web gcr.io/eldamo-build/eldamo:0.7.9
+docker run -d -p 8080:8080 --name eldamo-web gcr.io/eldamo-build/eldamo:0.8.0
 ```
 
 Then open a browser to http://localhost:8080/ 
@@ -29,8 +33,8 @@ Then open a browser to http://localhost:8080/
 The supplied Dockerfile will create an Eldamo image using multistage Docker build, first cloning the Eldamo repository and generating a war, and second (and finally) creating a [distroless](https://github.com/GoogleContainerTools/distroless) (think as small as possible) [jetty](https://www.eclipse.org/jetty/) image.
 
 ```
-# build an image eldamo:0.7.9
-ELDAMO_VERSION=0.7.9
+# build an image eldamo:0.8.0
+ELDAMO_VERSION=0.8.0
 docker build -t "eldamo:${ELDAMO_VERSION}"  .
 
 # run that image (interactively with -it ; detached, substitute -d)
@@ -39,11 +43,10 @@ docker run -it -p 8080:8080 --name eldamo-web eldamo:${ELDAMO_VERSION}
 
 #### Build with Google Cloud Platform's Cloud Build
 
-One can also build an image on the Google Cloud build service, Cloud Build, using the included cloudbuild.yaml and optionally provide an Eldamo version number as a Cloud Build substitution.
-The default version is 0.7.9.
+One can also build an image on the Google Cloud build service, [Cloud Build](https://cloud.google.com/build), using the included cloudbuild.yaml and optionally provide an Eldamo version number as a Cloud Build substitution. The default version is 0.8.0.
 
 ```
-gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.7.9
+gcloud builds submit --config=cloudbuild.yaml --substitutions=_ELDAMO_VERSION=0.8.0
 ```
 
 ### Run Gradle Directly
